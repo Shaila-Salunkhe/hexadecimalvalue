@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RGB to Hex Color Converter</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #bea9a9;
+  }
+  #container {
+    text-align: center;
+  }
+  #colorPicker {
+    width: 100px;
+    height: 100px;
+    border: 4px solid rgb(15, 7, 7);
+    margin-bottom: 20px;
+  }
+  #hexValue {
+    font-size: 1.5em;
+    color: #f4f2f2;
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <input type="color" id="colorPicker" onchange="updateHexValue()">
+  <div id="hexValue">#000000</div>
+</div>
+
+<script>
+function updateHexValue() {
+  // Get the color picker element
+  var colorPicker = document.getElementById('colorPicker');
+  
+  // Get the selected color in RGB format
+  var rgbColor = colorPicker.value;
+  
+  // Convert RGB to hexadecimal
+  var hexColor = rgbToHex(rgbColor);
+  
+  // Display the hexadecimal value
+  document.getElementById('hexaValue').textContent = hexColor.toUpperCase();
+}
+
+function rgbToHex(rgb) {
+  // Convert the RGB string to an array of RGB values
+  var rgbArray = rgb.match(/\d+/g);
+  
+  // Convert each RGB value to hexadecimal
+  var hexArray = rgbArray.map(function(color) {
+    var hex = Number(color).toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+  });
+  
+  // Concatenate the hexadecimal values
+  return "#" + hexArray.join('');
+}
+</script>
+
+</body>
+</html>
